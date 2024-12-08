@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="imgsystem.demo.ImgSystemServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-05T08:42:32" hostname="jeonghyeonjin-ui-MacBookPro.local" time="1.161">
+<testsuite name="imgsystem.demo.ImgSystemServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-12-08T08:30:38" hostname="jeonghyeonjin-ui-MacBookPro.local" time="1.635">
   <properties/>
-  <testcase name="unzipFile()" classname="imgsystem.demo.ImgSystemServiceTest" time="1.161"/>
-  <system-out><![CDATA[17:42:29.256 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [imgsystem.demo.ImgSystemServiceTest]: ImgSystemServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:42:29.458 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration imgsystem.ImgSystemDemoApplication for test class imgsystem.demo.ImgSystemServiceTest
+  <testcase name="getZipFileExtension()" classname="imgsystem.demo.ImgSystemServiceTest" time="1.476"/>
+  <testcase name="getFolderName()" classname="imgsystem.demo.ImgSystemServiceTest" time="0.013"/>
+  <testcase name="getUnzipFiles()" classname="imgsystem.demo.ImgSystemServiceTest" time="0.008"/>
+  <testcase name="unzipFile()" classname="imgsystem.demo.ImgSystemServiceTest" time="0.111"/>
+  <testcase name="getUnzipFileInfos()" classname="imgsystem.demo.ImgSystemServiceTest" time="0.006"/>
+  <system-out><![CDATA[17:30:33.819 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [imgsystem.demo.ImgSystemServiceTest]: ImgSystemServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:30:34.072 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration imgsystem.ImgSystemDemoApplication for test class imgsystem.demo.ImgSystemServiceTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,11 +18,11 @@
 
  :: Spring Boot ::                (v3.4.0)
 
-2024-12-05T17:42:30.148+09:00  INFO 54265 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : Starting ImgSystemServiceTest using Java 17.0.10 with PID 54265 (started by jeonghyeonjin in /Users/jeonghyeonjin/Documents/Github/img-system-demo)
-2024-12-05T17:42:30.149+09:00  INFO 54265 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : No active profile set, falling back to 1 default profile: "default"
-2024-12-05T17:42:31.607+09:00  WARN 54265 --- [imgSystemDemo] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2024-12-05T17:42:31.649+09:00  INFO 54265 --- [imgSystemDemo] [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
-2024-12-05T17:42:32.485+09:00  INFO 54265 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : Started ImgSystemServiceTest in 2.827 seconds (process running for 4.528)
+2024-12-08T17:30:35.018+09:00  INFO 82116 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : Starting ImgSystemServiceTest using Java 17.0.10 with PID 82116 (started by jeonghyeonjin in /Users/jeonghyeonjin/Documents/Github/img-system-demo)
+2024-12-08T17:30:35.021+09:00  INFO 82116 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : No active profile set, falling back to 1 default profile: "default"
+2024-12-08T17:30:36.974+09:00  WARN 82116 --- [imgSystemDemo] [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2024-12-08T17:30:37.028+09:00  INFO 82116 --- [imgSystemDemo] [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2024-12-08T17:30:38.095+09:00  INFO 82116 --- [imgSystemDemo] [    Test worker] imgsystem.demo.ImgSystemServiceTest      : Started ImgSystemServiceTest in 3.76 seconds (process running for 6.229)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

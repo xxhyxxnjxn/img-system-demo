@@ -1,4 +1,4 @@
-package imgsystem.demo;
+package imgsystem.demo.service;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,13 @@ import java.util.zip.ZipInputStream;
 
 @Service
 public class FileService {
+
+    public void isExistZipFile(String zipFilePath) {
+        File zipFile = new File(zipFilePath);
+        if (!zipFile.exists()) {
+            throw new IllegalStateException("zip file does not exist");
+        }
+    }
 
     public void unzipFile(String zipFilePath, String destDirectory) throws IOException {
 
@@ -47,5 +54,27 @@ public class FileService {
                 fos.write(buffer, 0, bytesRead);
             }
         }
+    }
+
+    public String extractFileNameWithoutExtension(String filePath) {
+        // 파일 경로에서 파일 이름 부분만 추출
+        String fileNameWithExtension = filePath.substring(filePath.lastIndexOf("/") + 1);
+
+        // 확장자를 제거한 파일 이름 반환
+        return fileNameWithExtension.substring(0, fileNameWithExtension.lastIndexOf('.'));
+    }
+
+    public String extractExtension(String filePath) {
+
+        return filePath.substring(filePath.lastIndexOf("."));
+    }
+
+    public File[] getUnzipFiles(String zipFilePath, String tempPath) {
+        String fileNameWithoutExtension = extractFileNameWithoutExtension(zipFilePath);
+        String unzipFolderPath = tempPath+fileNameWithoutExtension;
+
+        File folder = new File(unzipFolderPath);
+
+        return folder.listFiles();
     }
 }
