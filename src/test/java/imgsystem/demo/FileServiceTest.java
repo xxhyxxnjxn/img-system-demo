@@ -1,43 +1,24 @@
 package imgsystem.demo;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@SpringBootTest
 public class FileServiceTest {
-    public void unzipFile(String zipFilePath, String destDirectory) throws IOException {
 
-        File destDir = new File(destDirectory);
-        if (!destDir.exists()) {
-            destDir.mkdirs(); // 대상 디렉터리가 없으면 생성
-        }
 
-        try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath))) {
-            ZipEntry entry = zipIn.getNextEntry(); // ZIP 파일의 첫 번째 항목 가져오기
-            while (entry != null) {
-                String filePath = destDirectory + File.separator + entry.getName();
-                if (!entry.isDirectory()) {
-                    extractFile(zipIn, filePath); // 파일 추출
-                } else {
-                    File dir = new File(filePath);
-                    dir.mkdirs(); // 디렉터리 생성
-                }
-                zipIn.closeEntry(); // 현재 항목 닫기
-                entry = zipIn.getNextEntry(); // 다음 항목으로 이동
-            }
-        }
-    }
-
-    private static void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = zipIn.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesRead);
-            }
-        }
-    }
 }
