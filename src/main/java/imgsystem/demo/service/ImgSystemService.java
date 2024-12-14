@@ -2,6 +2,7 @@ package imgsystem.demo.service;
 
 import imgsystem.demo.code.Path;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,31 +14,31 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ImgSystemService {
 
     private final FileService fileService;
 
-    public void logic(String zipFilePath) {
+    public Map<String, List<File>> getGroupFiles(String zipFilePath) {
         String tempPath = Path.test1.getTempPath();     // 추출 경로
 
         fileService.isExistZipFile(zipFilePath);
 
         try {
             fileService.unzipFile(zipFilePath, tempPath);
-            System.out.println("압축 해제 완료!");
+            log.info("압축 해제 완료!");
 
             //압축 해제한 파일 리스트 구하기
             File[] files = fileService.getUnzipFiles(zipFilePath, tempPath);
 
             //그룹키 별 파일 그룹화
-            Map<String, List<File>> groupFiles = getGroupFiles(files);
-
-            //파일 리스트 for 문 돌면서 값 추출
-            getUnzipFileInfos(groupFiles);
+            return getGroupFiles(files);
 
         } catch (IOException e) {
-            System.err.println("압축 해제 중 오류 발생: " + e.getMessage());
+            log.error("압축 해제 중 오류 발생: {}" ,e.getMessage());
         }
+
+        return null;
     }
 
     public Map<String, List<File>> getGroupFiles(File[] files){
@@ -55,14 +56,25 @@ public class ImgSystemService {
         return fileName.split("_")[0];
     }
 
-    public void getUnzipFileInfos(Map<String, List<File>> groupFiles) {
+    public void getUnzipFileInfos(Map<String, List<File>> groupFiles, BusinessService businessService) {
         //바뀌는 부분
         for (Map.Entry<String, List<File>> entry : groupFiles.entrySet()) {
-            System.out.println("Map entrySet : " + entry.getKey());
+            log.info("Map entrySet : {}" , entry.getKey());
             List<File> fileList = entry.getValue();
             for (File file : fileList) {
-                System.out.println("File name : " + file.getName());
+                String fileName = file.getName();
+                String fileNameWithoutExtension = fileService.extractFileNameWithoutExtension(fileName);
+                String extension = fileService.extractExtension(fileName);
+                log.info("File name : {}",fileName);
+                log.info("fileNameWithoutExtension : {}" ,fileNameWithoutExtension);
+                log.info("extension : {}" ,extension);
+
+                //업무별 추출 값 달라야함
+                //익명 내부 클래스 이용
+                businessService.extractData(fileName);
             }
         }
     }
+
+
 }
